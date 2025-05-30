@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitalia Honduras - Llaves de Seguridad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFD700',
+                        secondary: '#000000',
+                        accent: '#FF0000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/50412345678" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-black text-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo (Left Side) -->
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <img src="Screenshot 2025-05-19 at 2.02.38 PM.png" 
+                             alt="Sitalia Logo" 
+                             class="h-10 md:h-12 mr-2">
+                        <span class="text-white text-sm flex items-center">
+                            <span class="mr-1">🇭🇳</span> HONDURAS
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Partner Logo Space (Right Side) -->
+                <div class="flex items-center">
+                    <img src="logo constructora.jpg" 
+                         alt="Partner Logo" 
+                         class="h-10 md:h-12">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-white hover:text-primary transition">Inicio</a>
+                    <a href="#products" class="text-white hover:text-primary transition">Productos</a>
+                    <a href="#about" class="text-white hover:text-primary transition">Nosotros</a>
+                    <a href="#contact" class="text-white hover:text-primary transition">Contacto</a>
+                    
+                    <!-- User and Cart -->
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-white hover:text-primary transition" id="user-btn">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-primary transition relative" id="cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="absolute -top-2 -right-2 bg-primary text-black rounded-full w-5 h-5 flex items-center justify-center text-xs" id="cart-count">0</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="text-white focus:outline-none" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-gray-900" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 text-white hover:text-primary">Inicio</a>
+                <a href="#products" class="block px-3 py-2 text-white hover:text-primary">Productos</a>
+                <a href="#about" class="block px-3 py-2 text-white hover:text-primary">Nosotros</a>
+                <a href="#contact" class="block px-3 py-2 text-white hover:text-primary">Contacto</a>
+                <div class="pt-4 border-t border-gray-700">
+                    <a href="#" class="block px-3 py-2 text-white hover:text-primary">Mi Cuenta</a>
+                    <a href="#" class="block px-3 py-2 text-white hover:text-primary">Carrito</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- User Dropdown (hidden by default) -->
+        <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50" id="user-dropdown">
+            <div class="py-1">
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mi Perfil</a>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Mis Pedidos</a>
+                <div class="border-t border-gray-200"></div>
+                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Cerrar Sesión</a>
+            </div>
+        </div>
+        
+        <!-- Cart Dropdown (hidden by default) -->
+        <div class="hidden absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg z-50 p-4" id="cart-dropdown">
+            <h3 class="text-lg font-semibold mb-2">Tu Carrito</h3>
+            <div class="border-b border-gray-200 mb-2"></div>
+            <div id="cart-items">
+                <p class="text-gray-500 text-center py-4">Tu carrito está vacío</p>
+            </div>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+                <div class="flex justify-between mb-2">
+                    <span>Total:</span>
+                    <span id="cart-total">L. 0.00</span>
+                </div>
+                <a href="#" class="block w-full bg-primary text-black text-center py-2 rounded font-medium hover:bg-yellow-500 transition">Proceder al Pago</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-black text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 fade-in">
+                <div class="flex items-center mb-2">
+                    <span class="text-2xl mr-2">🇭🇳</span>
+                    <span class="text-sm">HONDURAS</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">LLAVES DE SEGURIDAD</h1>
+                <img src="Screenshot 2025-05-19 at 2.02.38 PM.png" 
+                     alt="Sitalia Logo" 
+                     class="mb-4 h-12 md:h-16">
+                <p class="text-lg mb-6">Protección de alta calidad para tu hogar y negocio. Fabricados con los más altos estándares de seguridad.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#products" class="bg-primary text-black px-6 py-3 rounded font-bold hover:bg-yellow-500 transition">COMPRAR AHORA</a>
+                    <a href="#about" class="border border-white px-6 py-3 rounded font-bold hover:bg-gray-800 transition">MÁS INFORMACIÓN</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 fade-in">
+                <img src="IMG_8216.jpg" 
+                     alt="Llaves Sitalia" 
+                     class="w-full h-auto rounded-lg shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">¿POR QUÉ ELEGIR <span class="text-primary">SITALIA</span>?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Nuestras llaves ofrecen la mejor combinación de seguridad, durabilidad y diseño.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Alta Seguridad</h3>
+                    <p class="text-gray-600">Tecnología anti-ganzúa y anti-taladro para máxima protección contra robos.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Calidad Garantizada</h3>
+                    <p class="text-gray-600">Fabricados con materiales premium que garantizan durabilidad y rendimiento.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Envío Rápido</h3>
+                    <p class="text-gray-600">Entrega en todo Honduras en 24-48 horas con seguimiento en tiempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-12 bg-white" id="products">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">NUESTROS <span class="text-primary">PRODUCTOS</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explora nuestra línea de llaves de seguridad de alta gama.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1605773527852-324b678e0adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Llave Sitalia Pro" 
+                             class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-primary text-black px-2 py-1 rounded text-xs font-bold">NUEVO</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Llave Sitalia Pro</h3>
+                        <p class="text-gray-600 mb-4">Tecnología de seguridad avanzada con resistencia máxima a manipulaciones.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">L. 1,250.00</span>
+                            <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition add-to-cart" data-id="1" data-name="Llave Sitalia Pro" data-price="1250">
+                                Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1605773527852-324b678e0adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Llave Sitalia Home" 
+                             class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Llave Sitalia Home</h3>
+                        <p class="text-gray-600 mb-4">Protección confiable para tu hogar con diseño elegante y funcional.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">L. 950.00</span>
+                            <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition add-to-cart" data-id="2" data-name="Llave Sitalia Home" data-price="950">
+                                Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1605773527852-324b678e0adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Llave Sitalia Business" 
+                             class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">OFERTA</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Llave Sitalia Business</h3>
+                        <p class="text-gray-600 mb-4">Solución profesional para empresas con control de acceso avanzado.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-lg font-bold">L. 1,750.00</span>
+                                <span class="text-sm text-gray-500 line-through ml-2">L. 2,000.00</span>
+                            </div>
+                            <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition add-to-cart" data-id="3" data-name="Llave Sitalia Business" data-price="1750">
+                                Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 (Newly Added) -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md product-card transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1605773527852-324b678e0adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Llave Sitalia Premium" 
+                             class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold">TOP</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Llave Sitalia Premium</h3>
+                        <p class="text-gray-600 mb-4">Nuestra línea más exclusiva con tecnología biométrica opcional.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">L. 2,450.00</span>
+                            <button class="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition add-to-cart" data-id="4" data-name="Llave Sitalia Premium" data-price="2450">
+                                Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="#" class="inline-block border border-black px-6 py-3 rounded font-bold hover:bg-black hover:text-white transition">
+                    Ver Todos los Productos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-12 bg-gray-900 text-white" id="about">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h2 class="text-3xl font-bold mb-6">SOBRE <span class="text-primary">SITALIA</span></h2>
+                    <p class="mb-4">Sitalia es una marca líder en soluciones de seguridad para el hogar y negocios, con presencia en más de 15 países de América Latina.</p>
+                    <p class="mb-4">Nuestras llaves son diseñadas y fabricadas con los más altos estándares de calidad, utilizando tecnología de punta para garantizar la máxima protección.</p>
+                    <p class="mb-6">En Honduras 🇭🇳, nos enorgullecemos de ofrecert productos que combinan seguridad, diseño y durabilidad a precios competitivos.</p>
+                    <a href="https://www.sitalialocks.com" target="_blank" class="inline-block bg-primary text-black px-6 py-3 rounded font-bold hover:bg-yellow-500 transition">
+                        Visitar Sitalia Global
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-800 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-primary">NUESTRA TECNOLOGÍA</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary mt-1 mr-2"></i>
+                                <span>Sistema anti-ganzúa con pernos de seguridad</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary mt-1 mr-2"></i>
+                                <span>Resistencia a taladros y extracción forzada</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary mt-1 mr-2"></i>
+                                <span>Materiales de alta resistencia a la corrosión</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary mt-1 mr-2"></i>
+                                <span>Diseños patentados únicos en el mercado</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-primary mt-1 mr-2"></i>
+                                <span>Garantía de 5 años contra defectos de fabricación</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">OPINIONES DE <span class="text-primary">CLIENTES</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lo que nuestros clientes dicen sobre nuestros productos.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Las llaves Sitalia son increíbles. Instalé una en mi casa y la sensación de seguridad es incomparable. ¡Altamente recomendados!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold">Carlos M.</h4>
+                            <p class="text-sm text-gray-500">Tegucigalpa 🇭🇳</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Como dueño de negocio, la seguridad es prioridad. Las llaves Sitalia Business han sido la mejor inversión para mi local."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold">María L.</h4>
+                            <p class="text-sm text-gray-500">San Pedro Sula 🇭🇳</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="text-primary text-2xl mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Excelente relación calidad-precio. El servicio postventa es excepcional y el producto cumple con todo lo prometido."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 mr-3"></div>
+                        <div>
+                            <h4 class="font-semibold">Juan P.</h4>
+                            <p class="text-sm text-gray-500">La Ceiba 🇭🇳</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 bg-white" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">CONTÁCTANOS</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Estamos aquí para ayudarte con cualquier pregunta sobre nuestros productos.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Nombre Completo</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Correo Electrónico</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">Teléfono</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Mensaje</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="bg-black text-white px-6 py-3 rounded font-bold hover:bg-gray-800 transition w-full">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gray-50 p-6 rounded-lg h-full">
+                        <h3 class="text-xl font-semibold mb-4">INFORMACIÓN DE CONTACTO</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium">Dirección</h4>
+                                    <p class="text-gray-600">Colonia Palmira, Tegucigalpa, Honduras 🇭🇳</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium">Teléfono</h4>
+                                    <p class="text-gray-600">+504 2234-5678</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium">Correo Electrónico</h4>
+                                    <p class="text-gray-600">ventas@sitalia.hn</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="font-medium">Horario de Atención</h4>
+                                    <p class="text-gray-600">Lunes a Viernes: 8:00 AM - 5:00 PM<br>Sábados: 9:00 AM - 12:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium mb-2">Síguenos en Redes Sociales</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-600 hover:text-primary transition">
+                                    <i class="fab fa-facebook-f text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary transition">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary transition">
+                                    <i class="fab fa-twitter text-xl"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-primary transition">
+                                    <i class="fab fa-linkedin-in text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-primary text-black">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">SUSCRÍBETE A NUESTRO NEWSLETTER</h2>
+            <p class="max-w-2xl mx-auto mb-6">Recibe las últimas novedades, promociones especiales y consejos de seguridad directamente en tu correo.</p>
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Tu correo electrónico" class="flex-grow px-4 py-3 rounded-l focus:outline-none">
+                <button type="submit" class="bg-black text-white px-6 py-3 rounded-r font-bold hover:bg-gray-800 transition">
+                    Suscribirse
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <img src="https://via.placeholder.com/180x50?text=SITALIA+LOGO" 
+                         alt="Sitalia Logo" 
+                         class="h-10 mb-4">
+                    <p class="mb-4">Líderes en soluciones de seguridad para hogares y negocios en Honduras 🇭🇳.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-primary transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-primary transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-primary transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">PRODUCTOS</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">Llaves Residenciales</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Llaves Comerciales</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Sistemas de Seguridad</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Accesorios</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">COMPAÑÍA</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">Nosotros</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Trabaja con Nosotros</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Sitalia Global</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">AYUDA</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary transition">Preguntas Frecuentes</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Garantías</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 Sitalia Honduras 🇭🇳. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="login-modal">
+        <div class="bg-white rounded-lg p-8 w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Iniciar Sesión</h3>
+                <button class="text-gray-500 hover:text-black" id="close-login-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label for="login-email" class="block text-gray-700 mb-2">Correo Electrónico</label>
+                    <input type="email" id="login-email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" id="login-password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember-me" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Recordarme</label>
+                    </div>
+                    <a href="#" class="text-sm text-primary hover:underline">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit" class="w-full bg-primary text-black py-3 rounded font-bold hover:bg-yellow-500 transition">
+                    Iniciar Sesión
+                </button>
+            </form>
+            
+            <div class="mt-4 text-center">
+                <p class="text-gray-600">¿No tienes una cuenta? <a href="#" class="text-primary hover:underline" id="show-register">Regístrate</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="register-modal">
+        <div class="bg-white rounded-lg p-8 w-full max-w-md">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Crear Cuenta</h3>
+                <button class="text-gray-500 hover:text-black" id="close-register-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form class="space-y-4">
+                <div>
+                    <label for="register-name" class="block text-gray-700 mb-2">Nombre Completo</label>
+                    <input type="text" id="register-name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="register-email" class="block text-gray-700 mb-2">Correo Electrónico</label>
+                    <input type="email" id="register-email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="register-phone" class="block text-gray-700 mb-2">Teléfono</label>
+                    <input type="tel" id="register-phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="register-password" class="block text-gray-700 mb-2">Contraseña</label>
+                    <input type="password" id="register-password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label for="register-confirm-password" class="block text-gray-700 mb-2">Confirmar Contraseña</label>
+                    <input type="password" id="register-confirm-password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="accept-terms" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                    <label for="accept-terms" class="ml-2 block text-sm text-gray-700">Acepto los <a href="#" class="text-primary hover:underline">Términos y Condiciones</a></label>
+                </div>
+                <button type="submit" class="w-full bg-primary text-black py-3 rounded font-bold hover:bg-yellow-500 transition">
+                    Crear Cuenta
+                </button>
+            </form>
+            
+            <div class="mt-4 text-center">
+                <p class="text-gray-600">¿Ya tienes una cuenta? <a href="#" class="text-primary hover:underline" id="show-login">Iniciar Sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // User Dropdown
+        const userBtn = document.getElementById('user-btn');
+        const userDropdown = document.getElementById('user-dropdown');
+        
+        userBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            userDropdown.classList.toggle('hidden');
+            cartDropdown.classList.add('hidden');
+        });
+        
+        // Cart Dropdown
+        const cartBtn = document.getElementById('cart-btn');
+        const cartDropdown = document.getElementById('cart-dropdown');
+        
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartDropdown.classList.toggle('hidden');
+            userDropdown.classList.add('hidden');
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+            
+            if (!cartBtn.contains(e.target) && !cartDropdown.contains(e.target)) {
+                cartDropdown.classList.add('hidden');
+            }
+        });
+        
+        // Login/Register Modals
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const closeLoginModal = document.getElementById('close-login-modal');
+        const closeRegisterModal = document.getElementById('close-register-modal');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        
+        userBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('hidden');
+        });
+        
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+        });
+        
+        closeRegisterModal.addEventListener('click', () => {
+            registerModal.classList.add('hidden');
+        });
+        
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('hidden');
+            registerModal.classList.remove('hidden');
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.add('hidden');
+            loginModal.classList.remove('hidden');
+        });
+        
+        // Cart Functionality
+        let cart = [];
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                
+                // Show cart dropdown
+                cartDropdown.classList.remove('hidden');
+                userDropdown.classList.add('hidden');
+                
+                // Button feedback
+                button.textContent = '✓ Añadido';
+                button.classList.add('bg-green-500', 'hover:bg-green-600');
+                button.classList.remove('bg-black', 'hover:bg-gray-800');
+                
+                setTimeout(() => {
+                    button.textContent = 'Añadir al Carrito';
+                    button.classList.remove('bg-green-500', 'hover:bg-green-600');
+                    button.classList.add('bg-black', 'hover:bg-gray-800');
+                }, 2000);
+            });
+        });
+        
+        function updateCart() {
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update items list
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-4">Tu carrito está vacío</p>';
+            } else {
+                let html = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    html += `
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <div>
+                                <h4 class="font-medium">${item.name}</h4>
+                                <div class="flex items-center mt-1">
+                                    <button class="text-xs px-2 py-1 bg-gray-200 rounded decrease-quantity" data-id="${item.id}">-</button>
+                                    <span class="mx-2">${item.quantity}</span>
+                                    <button class="text-xs px-2 py-1 bg-gray-200 rounded increase-quantity" data-id="${item.id}">+</button>
+                                    <span class="ml-4 text-sm font-medium">L. ${itemTotal.toFixed(2)}</span>
+                                </div>
+                            </div>
+                            <button class="text-red-500 hover:text-red-700 remove-item" data-id="${item.id}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+                
+                cartItems.innerHTML = html;
+                cartTotal.textContent = `L. ${total.toFixed(2)}`;
+                
+                // Add event listeners to new buttons
+                document.querySelectorAll('.increase-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = button.getAttribute('data-id');
+                        const item = cart.find(item => item.id === id);
+                        if (item) {
+                            item.quantity += 1;
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.decrease-quantity').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = button.getAttribute('data-id');
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        
+                        if (itemIndex !== -1) {
+                            if (cart[itemIndex].quantity > 1) {
+                                cart[itemIndex].quantity -= 1;
+                            } else {
+                                cart.splice(itemIndex, 1);
+                            }
+                            updateCart();
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const id = button.getAttribute('data-id');
+                        const itemIndex = cart.findIndex(item => item.id === id);
+                        
+                        if (itemIndex !== -1) {
+                            cart.splice(itemIndex, 1);
+                            updateCart();
+                        }
+                    });
+                });
+            }
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                }
+            });
+        }
+        
+        // Set initial opacity for fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            element.style.opacity = '0';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
