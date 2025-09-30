@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia Fesmar S.A. | Industrial Raw Materials Experts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more specific styling */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .product-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .map-container {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        
+        .map-container iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body class="smooth-scroll font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#home" class="flex items-center">
+                    <img src="https://via.placeholder.com/180x60?text=FESMAR+LOGO" alt="Fesmar Logo" class="h-12">
+                </a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-blue-900 font-medium hover:text-blue-700 transition">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-700 transition">Who We Are</a>
+                <a href="#products" class="text-gray-600 hover:text-blue-700 transition">Products</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-700 transition">Contact</a>
+                <div class="relative">
+                    <button id="language-toggle" class="flex items-center text-gray-600 hover:text-blue-700 transition">
+                        <span>EN</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="language-dropdown" class="hidden absolute right-0 mt-2 w-20 bg-white rounded-md shadow-lg z-10">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-blue-50">ES</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-blue-900 font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-600 hover:text-blue-700">Who We Are</a>
+                <a href="#products" class="block px-3 py-2 text-gray-600 hover:text-blue-700">Products</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-blue-700">Contact</a>
+                <div class="px-3 py-2">
+                    <span class="text-gray-600">Language: </span>
+                    <a href="#" class="text-blue-700">EN</a>
+                    <span class="mx-1">/</span>
+                    <a href="#" class="text-gray-600">ES</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero-section pt-24 pb-32 md:pt-32 md:pb-48 flex items-center">
+        <div class="container mx-auto px-4 text-center text-white">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Connecting Global Suppliers with Central American Markets</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">40+ years of trusted expertise in industrial raw materials distribution</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#products" class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Our Products</a>
+                <a href="#contact" class="bg-transparent hover:bg-white hover:text-blue-900 text-white font-bold py-3 px-6 border-2 border-white rounded-lg transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Industries Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">Our Industry Expertise</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition text-center">
+                    <div class="text-blue-700 mb-4">
+                        <i class="fas fa-industry text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Steel Products</h3>
+                    <p class="text-gray-600">High-quality steel materials for various industrial applications</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition text-center">
+                    <div class="text-blue-700 mb-4">
+                        <i class="fas fa-flask text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Chemical Raw Materials</h3>
+                    <p class="text-gray-600">Essential chemicals for manufacturing processes</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition text-center">
+                    <div class="text-blue-700 mb-4">
+                        <i class="fas fa-scroll text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Paper Materials</h3>
+                    <p class="text-gray-600">Premium paper products for diverse applications</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition text-center">
+                    <div class="text-blue-700 mb-4">
+                        <i class="fas fa-tshirt text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Textiles</h3>
+                    <p class="text-gray-600">Quality textile materials for the garment industry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Fesmar Team" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-blue-900">Who We Are</h2>
+                    <p class="text-gray-600 mb-4">For over four decades, Agencia Fesmar S.A. has been a trusted partner in the industrial raw materials sector, serving as a strategic link between international manufacturers and Central American markets.</p>
+                    <p class="text-gray-600 mb-6">Our deep industry knowledge, reliable supply chain, and commitment to quality have established us as a preferred partner for businesses across Honduras and the region.</p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-blue-800">Our Mission</h3>
+                        <p class="text-gray-600">To provide high-quality industrial raw materials with exceptional service, creating value for both our suppliers and customers through reliable distribution and technical expertise.</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-3 text-blue-800">Our Values</h3>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                            <li><span class="font-medium">Integrity:</span> Honest and ethical business practices</li>
+                            <li><span class="font-medium">Reliability:</span> Consistent, dependable service</li>
+                            <li><span class="font-medium">Expertise:</span> Deep product and market knowledge</li>
+                            <li><span class="font-medium">Partnership:</span> Long-term relationships built on trust</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-16 bg-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold mb-2">60+</div>
+                    <div class="text-lg">Years in Business</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">40+</div>
+                    <div class="text-lg">Global Suppliers</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">500+</div>
+                    <div class="text-lg">Satisfied Clients</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">7</div>
+                    <div class="text-lg">Product Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">Our Product Categories</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611574474484-ced6cb70a2cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Steel Products" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Steel Products</h3>
+                        <p class="text-gray-600 mb-4">High-quality steel materials including sheets, coils, pipes, and structural components for various industrial applications.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">We supply premium steel products from trusted global manufacturers, ensuring quality and reliability for your projects.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Chemical Raw Materials" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Chemical Raw Materials</h3>
+                        <p class="text-gray-600 mb-4">Essential chemicals for manufacturing processes across various industries including plastics, coatings, and more.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">Our chemical products meet strict quality standards and are sourced from reputable global suppliers.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Paper Materials" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Paper Materials</h3>
+                        <p class="text-gray-600 mb-4">Premium paper products including specialty papers, packaging materials, and industrial-grade papers.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">We offer a wide range of paper products suitable for various applications from packaging to printing.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531104985437-603d6490e6d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Textiles" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Textiles</h3>
+                        <p class="text-gray-600 mb-4">Quality textile materials including fabrics, yarns, and fibers for the garment and manufacturing industries.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">Our textile products are sourced from leading manufacturers, offering durability and performance.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601593768790-1c0c0f5f0c1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Klüber Lubrication" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Klüber Lubrication</h3>
+                        <p class="text-gray-600 mb-4">Specialty lubricants for demanding applications in various industries including food processing and automotive.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">As authorized distributors, we provide Klüber's high-performance lubrication solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition relative">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Industrial Equipment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-800">Industrial Equipment</h3>
+                        <p class="text-gray-600 mb-4">Machinery and equipment for manufacturing and processing applications.</p>
+                        <div class="product-overlay absolute inset-0 bg-blue-900 bg-opacity-90 flex items-center justify-center p-6 opacity-0">
+                            <p class="text-white">We supply reliable industrial equipment to enhance your production capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">What Our Clients Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Fesmar has been our trusted supplier for over 15 years. Their reliability and product quality are unmatched in the region."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Carlos Mendez</h4>
+                            <p class="text-sm text-gray-500">Manufacturing Director</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"The technical expertise of Fesmar's team has helped us optimize our processes and reduce costs significantly."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Ana Rodriguez</h4>
+                            <p class="text-sm text-gray-500">Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Their customer service is exceptional. They always go above and beyond to meet our needs and deadlines."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Jorge Lopez</h4>
+                            <p class="text-sm text-gray-500">Procurement Specialist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-xl font-semibold mb-6">Our Office</h3>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-start mb-4">
+                            <div class="text-blue-300 mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Plaza Fesmar, 2do. Nivel</p>
+                                <p>6ta Calle, 13 Ave. S.O.</p>
+                                <p>San Pedro Sula, Honduras</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="text-blue-300 mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p>+504 2552-1234</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="text-blue-300 mr-4">
+                                <i class="fas fa-fax"></i>
+                            </div>
+                            <div>
+                                <p>+504 2552-5678</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="text-blue-300 mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p>fesmar@fesmar.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-6">Business Hours</h3>
+                    <div class="mb-8">
+                        <div class="flex justify-between py-2 border-b border-blue-800">
+                            <span>Monday - Friday</span>
+                            <span>8:00 AM - 5:00 PM</span>
+                        </div>
+                        <div class="flex justify-between py-2">
+                            <span>Saturday</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-lg p-8 text-gray-800">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-900">Send Us a Message</h3>
+                        
+                        <form id="contact-form">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="company" class="block text-gray-700 font-medium mb-2">Company Name</label>
+                                <input type="text" id="company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 rounded-lg overflow-hidden">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.123456789012!2d-88.04123456789012!3d15.512345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTXCsDMwJzQ0LjQiTiA4OMKwMDInMjguNCJX!5e0!3m2!1sen!2shn!4v1234567890123!5m2!1sen!2shn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <img src="https://via.placeholder.com/180x60?text=FESMAR+LOGO" alt="Fesmar Logo" class="h-12 mb-4">
+                    <p class="max-w-xs text-gray-400">40+ years of excellence in industrial raw materials distribution across Central America.</p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">Who We Are</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition">Products</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h4 class="text-lg font-semibold mb-4">Product Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Steel Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Chemical Raw Materials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Paper Materials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Textiles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Klüber Lubrication</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Industrial Equipment</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <address class="not-italic text-gray-400">
+                        <p class="mb-2">Plaza Fesmar, 2do. Nivel</p>
+                        <p class="mb-2">6ta Calle, 13 Ave. S.O.</p>
+                        <p class="mb-2">San Pedro Sula, Honduras</p>
+                        <p class="mb-2">Phone: +504 2552-1234</p>
+                        <p class="mb-2">Fax: +504 2552-5678</p>
+                        <p>Email: fesmar@fesmar.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Agencia Fesmar S.A. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-white transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Language dropdown toggle
+        document.getElementById('language-toggle').addEventListener('click', function() {
+            const dropdown = document.getElementById('language-dropdown');
+            dropdown.classList.toggle('hidden');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('language-dropdown');
+            const toggle = document.getElementById('language-toggle');
+            
+            if (!toggle.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+        
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const company = document.getElementById('company').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            console.log('Form submitted:', { name, email, phone, company, message });
+            
+            // Show success message
+            alert('Thank you for your message! We will contact you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
